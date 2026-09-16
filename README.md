@@ -1,3 +1,6 @@
+## 🧠 Architecture Flow
+
+```mermaid
 graph TD
     A[Raw User Review] --> B(Preprocessing & Formatting)
     B --> C{Google Gemini API}
@@ -15,3 +18,4 @@ graph TD
     
     style C fill:#f9f,stroke:#333,stroke-width:2px
     style I fill:#bbf,stroke:#333,stroke-width:2px
+```
