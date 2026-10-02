@@ -1,3 +1,9 @@
+import os
+import streamlit as st
+from langsmith import traceable
+import requests
+import json
+
 try:
     os.environ["LANGCHAIN_TRACING_V2"] = "true"
     os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
@@ -5,11 +11,7 @@ try:
     os.environ["LANGCHAIN_PROJECT"] = "Echo-ML"
 except:
     pass
-    
-from langsmith import traceable
-import streamlit as st
-import requests
-import json
+
 
 # --- 1. PRO PAGE CONFIGURATION ---
 st.set_page_config(page_title="Echo-ML | AI Sentiment", page_icon="⚡", layout="centered")
@@ -76,7 +78,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**About Echo-ML**")
     st.markdown("This tool uses Generative AI to parse unstructured customer feedback and extract precise sentiments along with the core aspect being discussed.")
-    st.markdown("👨‍💻 *Developed by Sidhu*")
+    st.markdown("👨‍💻 *Developed by SIDDHARTH NEGI*")
 
 # --- 5. CORE AI LOGIC ---
 @traceable(name="Echo-ML-Core-Engine")
