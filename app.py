@@ -1,20 +1,26 @@
 import os
 import streamlit as st
-from langsmith import traceable
 import requests
 import json
+import pandas as pd
+from langsmith import traceable
 
-try:
+# --- 1. PRO PAGE CONFIGURATION ---
+st.set_page_config(page_title="Echo-ML | AI Sentiment", page_icon="⚡", layout="centered")
+
+
+# --- LANGSMITH CONNECTION CHECK ---
+if "LANGCHAIN_API_KEY" in st.secrets:
     os.environ["LANGCHAIN_TRACING_V2"] = "true"
     os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
     os.environ["LANGCHAIN_API_KEY"] = st.secrets["LANGCHAIN_API_KEY"]
     os.environ["LANGCHAIN_PROJECT"] = "Echo-ML"
-except:
-    pass
+else:
+    st.error("🚨 Configuration Error: LangSmith API keys are missing from Streamlit Secrets. Please verify your setup.")
 
-
-# --- 1. PRO PAGE CONFIGURATION ---
-st.set_page_config(page_title="Echo-ML | AI Sentiment", page_icon="⚡", layout="centered")
+# --- UI TRACING INDICATOR ---
+if os.environ.get("LANGCHAIN_API_KEY"):
+    st.sidebar.success("✅ LangSmith Tracing Active")
 
 # --- 2. CUSTOM CSS FOR PREMIUM LOOK ---
 st.markdown("""
