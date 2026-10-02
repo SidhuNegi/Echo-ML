@@ -1,3 +1,4 @@
+from langsmith import traceable
 import streamlit as st
 import requests
 import json
@@ -70,6 +71,7 @@ with st.sidebar:
     st.markdown("👨‍💻 *Developed by Sidhu*")
 
 # --- 5. CORE AI LOGIC ---
+@traceable(name="Echo-ML-Core-Engine")
 def analyze_review_with_ai(review_text):
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={API_KEY}"
     
